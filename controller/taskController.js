@@ -21,7 +21,7 @@ module.exports.createTask = async (req, res, next) => {
 module.exports.getTasks = async (req, res, next) => {
   try {
     const {pagination} = req;
-    const tasks = await Task.findAll({...pagination});
+    const tasks = await Task.findAll({...pagination, order: ['createdAt']});
 
     if (!tasks.length) {
       return next(createError(404, 'tasks not found'));
